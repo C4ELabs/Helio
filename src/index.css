@@ -1,0 +1,598 @@
+:root {
+  /* Primary body font */
+  font-family: 'Lexend', 'Roboto Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #000000;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Custom color palette */
+  --helio-primary: #9b4b65;
+  --helio-light: #efe2e7;
+  --helio-dark: #39222a;
+  --helio-black: #000000;
+  
+  /* Font families */
+  --font-heading: 'EB Garamond', 'DM Serif Text', 'Bodoni Moda', serif;
+  --font-body: 'Lexend', 'Roboto Flex', sans-serif;
+  --font-display: 'Bona Nova SC', 'Libre Bodoni', serif;
+  --font-special: 'Tektur', 'Orbitron', sans-serif;
+  --font-mono: 'Source Code Pro', monospace;
+}
+
+/* Bootstrap primary color override */
+.btn-primary,
+.btn,
+button {
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--helio-primary);
+  border-color: var(--helio-primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #8a4057;
+  border-color: #8a4057;
+  color: #ffffff;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(155, 75, 101, 0.25);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+}
+
+/* Typography - Apply fonts throughout */
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+p, span, div, a, li, td, th, label, input, textarea, select, button {
+  font-family: var(--font-body);
+}
+
+.section-label {
+  font-family: var(--font-special);
+  font-weight: 500;
+}
+
+.feature-heading,
+.section-main-heading {
+  font-family: var(--font-heading);
+}
+
+.navbar-brand {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo styling */
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CTA section scroll positioning */
+#cta {
+  scroll-margin-top: 80px;
+}
+
+/* Footer styling - Enhanced design */
+.footer-section {
+  background: linear-gradient(180deg, var(--helio-dark) 0%, #2a1a20 100%);
+  color: var(--helio-light);
+  padding: 4rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(239, 226, 231, 0.3), transparent);
+}
+
+.footer-heading {
+  color: var(--helio-light);
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-link {
+  color: rgba(239, 226, 231, 0.8);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  padding-left: 0;
+}
+
+.footer-link::before {
+  content: '→';
+  position: absolute;
+  left: -1rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  color: var(--helio-primary);
+}
+
+.footer-link:hover {
+  color: var(--helio-light);
+  padding-left: 1rem;
+  text-decoration: none;
+}
+
+.footer-link:hover::before {
+  opacity: 1;
+  left: 0;
+}
+
+.footer-description {
+  color: rgba(239, 226, 231, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(239, 226, 231, 0.2), transparent);
+  margin: 2.5rem 0 1.5rem;
+}
+
+.footer-copyright {
+  color: rgba(239, 226, 231, 0.6);
+  font-size: 0.875rem;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+@media (min-width: 768px) {
+  .footer-section {
+    padding: 5rem 0 2.5rem;
+  }
+}
+
+/* Light background sections */
+.bg-helio-light {
+  background-color: var(--helio-light) !important;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Text color utilities */
+.text-helio-primary {
+  color: var(--helio-primary) !important;
+}
+
+.text-helio-dark {
+  color: var(--helio-dark) !important;
+}
+
+/* Link colors */
+a {
+  color: var(--helio-primary);
+}
+
+a:hover {
+  color: #8a4057;
+}
+
+/* Navbar link colors */
+.navbar-nav .nav-link {
+  color: #000000 !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--helio-primary) !important;
+}
+
+.navbar-brand {
+  color: #000000 !important;
+}
+
+.navbar-brand:hover {
+  color: var(--helio-primary) !important;
+}
+
+/* Form focus states */
+.form-control:focus {
+  border-color: var(--helio-primary);
+  box-shadow: 0 0 0 0.25rem rgba(155, 75, 101, 0.25);
+}
+
+.is-valid {
+  border-color: var(--helio-primary) !important;
+}
+
+.valid-feedback {
+  color: var(--helio-primary) !important;
+}
+
+/* Hero section image styling - rounded corners for modern look */
+.hero-image-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 80%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hero-image {
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-image {
+    max-width: 500px;
+    max-height: 500px;
+    object-fit: contain;
+  }
+}
+
+/* Features section styling - Enhanced card design */
+.feature-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 2.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(155, 75, 101, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--helio-primary), var(--helio-dark));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: rgba(155, 75, 101, 0.15);
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+.feature-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  font-family: var(--font-heading);
+}
+
+.feature-body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333333;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+  font-family: var(--font-body);
+}
+
+
+.feature-list {
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.feature-list-item {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333333;
+  margin-bottom: 0.875rem;
+  padding-left: 2rem;
+  position: relative;
+  font-weight: 400;
+  font-family: var(--font-body);
+}
+
+.feature-list-item:last-child {
+  margin-bottom: 0;
+}
+
+.feature-list-item::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--helio-primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  top: 0;
+}
+
+/* Feature icon cards - horizontal design */
+.feature-icon-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.feature-icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.feature-icon-pink {
+  background-color: rgba(239, 226, 231, 0.6);
+}
+
+.feature-icon-purple {
+  background-color: rgba(155, 75, 101, 0.15);
+}
+
+.feature-icon {
+  font-size: 1.75rem;
+  display: block;
+}
+
+.feature-icon-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+
+.feature-icon-text {
+  font-size: 0.9rem;
+  color: #333333;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* Feature badges - horizontal button style */
+.feature-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000000;
+  font-family: var(--font-body);
+}
+
+.feature-badge-pink {
+  background-color: rgba(239, 226, 231, 0.8);
+}
+
+.feature-badge-dark-pink {
+  background-color: rgba(155, 75, 101, 0.15);
+}
+
+.feature-badge-purple {
+  background-color: rgba(155, 75, 101, 0.1);
+}
+
+.feature-badge-check {
+  font-weight: 700;
+  color: var(--helio-primary);
+  font-size: 1rem;
+}
+
+/* Section labels - structural design element */
+.section-label {
+  font-family: var(--font-special);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666666;
+  margin-bottom: 0.5rem;
+}
+
+/* Section spacing - better visual separation */
+.section-spacing {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Intro section styling - Card-based design inspired by medCare */
+.intro-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2rem 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(155, 75, 101, 0.1);
+}
+
+.intro-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--helio-primary), var(--helio-dark));
+  opacity: 0.3;
+}
+
+.intro-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #000000;
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+.intro-lead {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #000000;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+.intro-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #333333;
+  margin-bottom: 1rem;
+  font-family: var(--font-body);
+}
+
+.intro-highlight {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--helio-primary);
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 2px solid rgba(155, 75, 101, 0.15);
+  font-family: var(--font-heading);
+}
+
+.intro-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  
+  .intro-card {
+    padding: 2.5rem 2.5rem;
+  }
+  
+  .intro-heading {
+    font-size: 1.75rem;
+  }
+  
+  .intro-lead {
+    font-size: 1.1rem;
+  }
+  
+  .intro-text {
+    font-size: 1rem;
+  }
+  
+  .intro-highlight {
+    font-size: 1.1rem;
+  }
+  
+  .feature-card {
+    padding: 3rem 3rem;
+  }
+  
+  .feature-heading {
+    font-size: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .feature-body {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-main-heading {
+    font-size: 2.5rem;
+  }
+}
+
+/* Section main heading for Features */
+.section-main-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.2;
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .section-main-heading {
+    font-size: 2.5rem;
+  }
+  
+  #features {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
