@@ -6,8 +6,8 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
-          <img src={logo} alt="Helio" className="me-2" />
-          <span>Helio</span>
+          <img src={logo} alt="HelioCoach" className="me-2" />
+          <span style={{ color: '#4870b8' }}>HelioCoach</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -22,16 +22,6 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link" to="/#features">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/#testimonials">
-                About
-              </Link>
-            </li>
             <li className="nav-item">
               <Link className="nav-link" to="/waitlist">
                 Join Waitlist
