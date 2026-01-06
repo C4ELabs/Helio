@@ -7,15 +7,15 @@ const Features = () => {
             <h2 className="section-main-heading mb-0">Our Features</h2>
           </div>
         </div>
-        <div className="row g-4 g-lg-5">
+        <div className="row g-5 g-lg-6">
           <div className="col-12">
             <div className="feature-card">
-              <h2 className="feature-heading mb-4">Built for real routines, not ideal ones.</h2>
-              <p className="feature-body mb-4">
+              <h2 className="feature-heading mb-5">Built for real routines, not ideal ones.</h2>
+              <p className="feature-body mb-5">
                 Helio doesn't remind you at a fixed time every day. It learns when
                 you typically take supplements-and adapts when your routine shifts.
               </p>
-              <div className="row g-3 mb-4">
+              <div className="row g-4 mb-5">
                 <div className="col-md-4">
                   <div className="feature-icon-card">
                     <div className="feature-icon-circle feature-icon-pink">
@@ -52,16 +52,16 @@ const Features = () => {
           </div>
           <div className="col-12">
             <div className="feature-card">
-              <h2 className="feature-heading mb-4">Track progress, not perfection.</h2>
-              <p className="feature-body mb-4">
+              <h2 className="feature-heading mb-5">Track progress, not perfection.</h2>
+              <p className="feature-body mb-5">
                 Whether you take one supplement or a dozen, Helio keeps things
                 simple. You see your progress over time-not just today's checkboxes.
               </p>
-              <p className="feature-body mb-4">
+              <p className="feature-body mb-5">
                 Missed days are visible, but they don't erase your streak. No guilt.
                 No shame. Just clarity on what's working.
               </p>
-              <p className="feature-body">
+              <p className="feature-body mb-0">
                 Most tracking apps are built for rigid compliance. Helio is built for
                 human beings.
               </p>
@@ -69,18 +69,18 @@ const Features = () => {
           </div>
           <div className="col-12">
             <div className="feature-card">
-              <h2 className="feature-heading mb-4">
+              <h2 className="feature-heading mb-5">
                 Built by people who've tried every other app.
               </h2>
-              <p className="feature-body mb-4">
+              <p className="feature-body mb-5">
                 We spent months analyzing what works (and what frustrates people) in
                 20+ supplement and habit apps.
               </p>
-              <p className="feature-body mb-4">
+              <p className="feature-body mb-5">
                 Helio is designed for long-term consistency-not short-term engagement
                 tricks.
               </p>
-              <div className="d-flex flex-wrap gap-3 mb-4">
+              <div className="d-flex flex-wrap gap-3 mb-5">
                 <div className="feature-badge feature-badge-pink">
                   <span className="feature-badge-check">✓</span>
                   <span>No ads</span>

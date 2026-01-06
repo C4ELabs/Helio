@@ -5,22 +5,22 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <main className="flex-grow-1 py-5">
+      <main className="contact-page-main">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-8">
-              <h1 className="display-4 mb-4">Contact Us</h1>
-              <p className="lead mb-4">
-                Have questions or feedback? We'd love to hear from you.
-              </p>
-              <p className="mb-4">
-                For general inquiries, please reach out to us at{' '}
-                <a href="mailto:hello@helio.app">hello@helio.app</a>
-              </p>
-              <p className="mb-4">
-                For support questions, please visit our{' '}
-                <a href="/refunds-and-support">Refunds and Support</a> page.
-              </p>
+            <div className="col-12 col-md-10 col-lg-8">
+              <div className="contact-content">
+                <h1 className="contact-heading">Contact Us</h1>
+                <p className="contact-intro">
+                  Have questions or feedback? We'd love to hear from you.
+                </p>
+                <div className="contact-info">
+                  <p className="contact-text">
+                    For support questions, please visit our{' '}
+                    <a href="/refunds-and-support" className="contact-link">Refunds and Support</a> page.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

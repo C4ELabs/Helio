@@ -6,6 +6,7 @@ import Contact from './pages/Contact'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsOfUse from './pages/TermsOfUse'
 import RefundsAndSupport from './pages/RefundsAndSupport'
+import Waitlist from './pages/Waitlist'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/waitlist" element={<Waitlist />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

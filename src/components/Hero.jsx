@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import heroImage from '../assets/images/Suppliments image.jpeg'
 
 const Hero = () => {
@@ -6,38 +7,32 @@ const Hero = () => {
   
   const imageSrc = heroImage
 
-  const scrollToCTA = (e) => {
-    e.preventDefault()
-    const ctaSection = document.getElementById('cta')
-    if (ctaSection) {
-      ctaSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
 
   return (
-    <section className="py-5 py-lg-6 section-spacing bg-white">
+    <section className="hero-section-main">
       <div className="container">
-        <div className="row align-items-center g-4">
-          <div className="col-lg-6">
-            <h1 className="display-4 fw-bold mb-4" style={{ color: '#000000' }}>
-              Stay consistent with supplements-even when routines change.
-            </h1>
-            <p className="lead mb-4" style={{ color: '#000000' }}>
-              Helio adapts to how your days actually unfold, so missed mornings
-              don't derail weeks of progress.
-            </p>
-            <button
-              onClick={scrollToCTA}
-              className="btn btn-primary btn-lg mb-3"
-              style={{ minWidth: '200px' }}
-            >
-              Join the waitlist
-            </button>
-            <p className="text-muted small mt-3">
-              You're not broken. Most tools just aren't built for reality.
-            </p>
+        <div className="row justify-content-center align-items-center hero-row">
+          <div className="col-12 col-md-10 col-lg-5">
+            <div className="hero-content-wrapper">
+              <h1 className="hero-heading fw-bold" style={{ color: '#ffffff' }}>
+                Consistency shouldn't feel this hard.
+              </h1>
+              <p className="hero-subtext" style={{ color: '#ffffff' }}>
+                HelioCoach is a supplement compliance app designed for real life - missed days, travel, and all.
+              </p>
+              <Link
+                to="/waitlist"
+                className="btn btn-light hero-cta-btn"
+                style={{ backgroundColor: '#ffffff', color: '#4870b8', border: 'none', textDecoration: 'none', display: 'inline-block' }}
+              >
+                Join the waitlist
+              </Link>
+              <p className="hero-microcopy">
+                You're not broken. Most tools just aren't built for reality.
+              </p>
+            </div>
           </div>
-          <div className="col-lg-6">
+          <div className="col-12 col-md-10 col-lg-5">
             <div className="hero-image-wrapper">
               {imageSrc && !imageError ? (
                 <img
@@ -52,8 +47,8 @@ const Hero = () => {
                 style={{
                   width: '100%',
                   minHeight: '400px',
-                  backgroundColor: '#efe2e7',
-                  color: '#9b4b65',
+                  backgroundColor: '#e8ecf5',
+                  color: '#4870b8',
                   fontSize: '14px',
                   textAlign: 'center',
                   padding: '20px',
