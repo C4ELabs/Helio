@@ -668,6 +668,143 @@ a:hover {
   }
 }
 
+/* Hero Alt Section - Split hero: text left, image right */
+.hero-alt-section {
+  background-color: #f8f6f4;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+.hero-alt-image {
+  min-height: 100vh;
+  background-image: var(--hero-image-url);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: cover;
+  box-shadow: inset 80px 0 80px -40px #f8f6f4;
+}
+
+.hero-alt-row {
+  --bs-gutter-x: 3rem;
+  --bs-gutter-y: 2rem;
+}
+
+.hero-alt-content-wrapper {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: left !important;
+}
+
+.hero-alt-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+  color: #2d4a7a;
+  font-family: var(--font-heading);
+  text-align: left !important;
+}
+
+.hero-alt-text-content {
+  color: #333333;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: left !important;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+}
+
+.hero-alt-text-content p {
+  margin-bottom: 0.5rem;
+  color: #333333;
+  text-align: left !important;
+}
+
+.hero-alt-cta-section {
+  margin-top: 0;
+  text-align: left !important;
+}
+
+.hero-alt-btn {
+  font-size: 0.95rem;
+  padding: 0.75rem 2rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 1rem;
+}
+
+.hero-alt-microcopy {
+  font-size: 0.8rem;
+  color: #666666;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+
+@media (min-width: 768px) {
+  .hero-alt-heading {
+    font-size: 2.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-alt-text-content {
+    font-size: 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-alt-content-wrapper {
+    padding-right: 1.5rem;
+  }
+  
+  .hero-alt-heading {
+    font-size: 3rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  .hero-alt-text-content {
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-alt-image {
+    min-height: 50vh;
+    background-position: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-alt-heading {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-alt-text-content {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .hero-alt-btn {
+    margin-bottom: 0.75rem;
+  }
+  
+  .hero-alt-microcopy {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  
+  .hero-alt-image {
+    min-height: 50vh;
+  }
+}
+
 /* Features section styling - Enhanced card design */
 .feature-card {
   background-color: #ffffff;

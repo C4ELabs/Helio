@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
+import LandingAlt from './pages/LandingAlt'
 import Blog from './pages/Blog'
 import About from './pages/About'
 import Contact from './pages/Contact'
@@ -14,6 +15,7 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/landing-alt" element={<LandingAlt />} />
         <Route path="/waitlist" element={<Waitlist />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/about" element={<About />} />
