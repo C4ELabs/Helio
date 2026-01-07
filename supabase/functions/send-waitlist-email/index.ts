@@ -1,6 +1,7 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
+// @ts-ignore - Deno is available at runtime in Supabase Edge Functions
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 
 // CORS headers
@@ -9,6 +10,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// @ts-ignore - Deno is available at runtime in Supabase Edge Functions
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -16,6 +18,18 @@ Deno.serve(async (req) => {
   }
 
   try {
+    // Check if RESEND_API_KEY is set
+    if (!RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not set');
+      return new Response(
+        JSON.stringify({ error: "Email service not configured" }),
+        { 
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
     const { email } = await req.json();
 
     if (!email) {
@@ -28,16 +42,22 @@ Deno.serve(async (req) => {
       );
     }
 
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "Helio <hello@heliocoach.com>",
-        to: email,
-        subject: "You’re in. No perfect habits required.",
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email format" }),
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      );
+    }
+
+    const emailPayload = {
+      from: "Helio <hello@heliocoach.com>",
+      to: email,
+      subject: "You're in. No perfect habits required.",
         html: `
 <!DOCTYPE html>
 <html lang="en">
@@ -116,16 +136,30 @@ Deno.serve(async (req) => {
   </body>
 </html>
         `,
-      }),
+    };
+
+    console.log('Sending email to:', email);
+    console.log('Using API key:', RESEND_API_KEY ? 'Set' : 'Missing');
+
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify(emailPayload),
     });
 
     const data = await res.json();
+    console.log('Resend API response status:', res.status);
+    console.log('Resend API response:', JSON.stringify(data));
 
     if (!res.ok) {
+      console.error('Resend API error:', data);
       return new Response(
-        JSON.stringify({ error: data }),
+        JSON.stringify({ error: data, status: res.status }),
         { 
-          status: 500,
+          status: res.status,
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         }
       );
@@ -138,8 +172,9 @@ Deno.serve(async (req) => {
       }
     );
   } catch (err) {
+    console.error('Edge function error:', err);
     return new Response(
-      JSON.stringify({ error: "Invalid request" }),
+      JSON.stringify({ error: err.message || "Invalid request", details: err.toString() }),
       { 
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
