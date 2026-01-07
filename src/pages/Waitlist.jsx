@@ -43,13 +43,31 @@ const Waitlist = () => {
           const errorData = await response.json().catch(() => ({ error: `HTTP ${response.status} error` }))
           
           // Check if it's a duplicate email error
-          if (response.status === 409 || errorData.error?.includes('duplicate') || errorData.error?.includes('already')) {
-            setErrorMessage('This email is already on the waitlist.')
+          if (response.status === 409 || 
+              errorData.error?.toLowerCase().includes('duplicate') || 
+              errorData.error?.toLowerCase().includes('already') ||
+              errorData.error?.toLowerCase().includes('signed up')) {
+            setErrorMessage('This email is already signed up!')
             setIsValid(false)
+            setIsLoading(false)
+            return
           } else {
             setErrorMessage(errorData.error || 'Something went wrong. Please try again later.')
             console.error('Error submitting email:', response.status, errorData)
           }
+          setIsLoading(false)
+          return
+        }
+
+        // Check response body for duplicate indicators even on 200 status
+        const data = await response.json().catch(() => ({ success: true }))
+        if (data.error && (
+          data.error.toLowerCase().includes('duplicate') || 
+          data.error.toLowerCase().includes('already') ||
+          data.error.toLowerCase().includes('signed up')
+        )) {
+          setErrorMessage('This email is already signed up!')
+          setIsValid(false)
           setIsLoading(false)
           return
         }

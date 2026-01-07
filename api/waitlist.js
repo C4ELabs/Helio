@@ -47,20 +47,49 @@ export default async function handler(req, res) {
       }),
     })
 
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
-      console.error('n8n webhook error:', response.status, errorData)
-      
-      // Check for duplicate email
-      if (response.status === 409 || errorData.message?.includes('duplicate') || errorData.message?.includes('already')) {
-        return res.status(409).json({ error: 'This email is already on the waitlist.' })
-      }
-      
-      return res.status(response.status).json({ error: errorData.message || 'Failed to process request' })
+    const responseText = await response.text()
+    let responseData
+    try {
+      responseData = JSON.parse(responseText)
+    } catch {
+      responseData = { message: responseText }
     }
 
-    const data = await response.json().catch(() => ({ success: true }))
-    return res.status(200).json(data)
+    if (!response.ok) {
+      console.error('n8n webhook error:', response.status, responseData)
+      
+      // Check for duplicate email - check status code, message, or any duplicate indicators
+      const isDuplicate = 
+        response.status === 409 || 
+        response.status === 400 ||
+        responseData.message?.toLowerCase().includes('duplicate') ||
+        responseData.message?.toLowerCase().includes('already') ||
+        responseData.message?.toLowerCase().includes('exists') ||
+        responseData.error?.toLowerCase().includes('duplicate') ||
+        responseData.error?.toLowerCase().includes('already') ||
+        responseData.error?.toLowerCase().includes('exists')
+      
+      if (isDuplicate) {
+        return res.status(409).json({ error: 'This email is already signed up!' })
+      }
+      
+      return res.status(response.status).json({ error: responseData.message || responseData.error || 'Failed to process request' })
+    }
+
+    // Check response body for duplicate indicators even on 200 status
+    const isDuplicateInResponse = 
+      responseData.message?.toLowerCase().includes('duplicate') ||
+      responseData.message?.toLowerCase().includes('already') ||
+      responseData.message?.toLowerCase().includes('exists') ||
+      responseData.error?.toLowerCase().includes('duplicate') ||
+      responseData.error?.toLowerCase().includes('already') ||
+      responseData.error?.toLowerCase().includes('exists')
+    
+    if (isDuplicateInResponse) {
+      return res.status(409).json({ error: 'This email is already signed up!' })
+    }
+
+    return res.status(200).json(responseData || { success: true })
   } catch (error) {
     console.error('Error in waitlist API:', error)
     return res.status(500).json({ error: 'Internal server error' })

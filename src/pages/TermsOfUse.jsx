@@ -285,7 +285,7 @@ const TermsOfUse = () => {
                     </ul>
                   </div>
 
-                  <div className="mb-4">
+              <div className="mb-4">
                     <h3 className="h5 fw-semibold mb-2">13.2 Termination by You</h3>
                     <p className="mb-2">
                       You may terminate your account at any time by:
@@ -300,39 +300,39 @@ const TermsOfUse = () => {
                     <h3 className="h5 fw-semibold mb-2">13.3 Effect of Termination</h3>
                     <p>
                       Upon termination, your right to use the App will cease immediately. We may delete your account and data in accordance with our data retention policies, subject to legal obligations.
-                    </p>
-                  </div>
+                </p>
+              </div>
                 </section>
 
                 <section className="mb-5">
                   <h2 className="h4 fw-bold mb-3">14. Governing Law and Dispute Resolution</h2>
                   
-                  <div className="mb-4">
+              <div className="mb-4">
                     <h3 className="h5 fw-semibold mb-2">14.1 Governing Law</h3>
-                    <p>
+                <p>
                       These Terms shall be governed by and construed in accordance with the laws of India, without regard to its conflict of law provisions.
-                    </p>
-                  </div>
+                </p>
+              </div>
 
-                  <div className="mb-4">
+              <div className="mb-4">
                     <h3 className="h5 fw-semibold mb-2">14.2 Arbitration</h3>
                     <p className="mb-2">
                       Any dispute arising from or relating to these Terms or the App shall be resolved through binding arbitration conducted in English in accordance with the Arbitration and Conciliation Act, 1996 (India). The seat of arbitration shall be Mumbai, India.
                     </p>
-                    <p>
+                <p>
                       To the extent arbitration is not permitted or enforceable under applicable consumer protection laws in your jurisdiction, disputes shall be resolved in accordance with those laws, and you may bring claims in your local courts as permitted.
-                    </p>
-                  </div>
+                </p>
+              </div>
 
-                  <div className="mb-4">
+              <div className="mb-4">
                     <h3 className="h5 fw-semibold mb-2">14.3 Class Action Waiver</h3>
                     <p className="mb-2">
                       To the extent permitted by law, you agree that any dispute resolution proceedings will be conducted only on an individual basis and not in a class, consolidated, or representative action.
                     </p>
-                    <p>
+                <p>
                       This class action waiver does not apply where prohibited by law.
-                    </p>
-                  </div>
+                </p>
+              </div>
 
                   <div>
                     <h3 className="h5 fw-semibold mb-2">14.4 Exceptions to Arbitration</h3>
