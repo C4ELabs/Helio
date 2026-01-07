@@ -62,11 +62,14 @@ const Waitlist = () => {
           if (functionError) {
             // Log error but don't fail the submission - email is already in database
             console.error('Error sending welcome email:', functionError)
-            // Continue with success message even if email sending fails
+            console.error('Function error details:', JSON.stringify(functionError, null, 2))
+          } else {
+            console.log('Welcome email sent successfully:', functionData)
           }
         } catch (functionError) {
           // Log error but don't fail the submission
           console.error('Error invoking email function:', functionError)
+          console.error('Function error details:', JSON.stringify(functionError, null, 2))
         }
         
         setIsSubmitted(true)
