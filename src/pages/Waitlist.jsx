@@ -24,6 +24,12 @@ const Waitlist = () => {
       setIsLoading(true)
       
       try {
+        if (!supabase) {
+          setErrorMessage('Database connection not configured. Please contact support.')
+          setIsLoading(false)
+          return
+        }
+
         // Insert email into Supabase waitlist table
         const { data, error } = await supabase
           .from('waitlist')
