@@ -72,7 +72,6 @@ const Waitlist = () => {
           return
         }
 
-        const data = await response.json().catch(() => ({ success: true }))
         console.log('Email submitted successfully:', data)
         
         setIsSubmitted(true)
