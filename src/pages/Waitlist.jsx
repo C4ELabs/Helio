@@ -47,32 +47,6 @@ const Waitlist = () => {
         }
         
         // Success - email stored in database
-        // Now send welcome email via Edge Function
-        try {
-          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-          const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-          
-          if (supabaseUrl && supabaseAnonKey) {
-            const functionUrl = `${supabaseUrl}/functions/v1/send-waitlist-email`
-            
-            const emailResponse = await fetch(functionUrl, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${supabaseAnonKey}`,
-              },
-              body: JSON.stringify({ email: email.toLowerCase().trim() }),
-            })
-
-            if (!emailResponse.ok) {
-              console.warn('Email sending failed, but user was added to waitlist')
-            }
-          }
-        } catch (emailError) {
-          console.warn('Email sending error:', emailError)
-          // Don't fail the whole process if email fails
-        }
-        
         setIsSubmitted(true)
         setIsLoading(false)
         setTimeout(() => setIsSubmitted(false), 5000)
