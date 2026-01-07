@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { supabase } from '../lib/supabase'
 
 const Waitlist = () => {
   const [email, setEmail] = useState('')
@@ -24,53 +23,43 @@ const Waitlist = () => {
       setIsLoading(true)
       
       try {
-        if (!supabase) {
-          setErrorMessage('Database connection not configured. Please contact support.')
+        const n8nWebhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL
+        
+        if (!n8nWebhookUrl) {
+          setErrorMessage('Service not configured. Please contact support.')
           setIsLoading(false)
           return
         }
 
-        // Insert email into Supabase waitlist table
-        const { data, error } = await supabase
-          .from('waitlist')
-          .insert([{ 
+        // Send email to n8n webhook
+        const response = await fetch(n8nWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
             email: email.toLowerCase().trim(),
-            created_at: new Date().toISOString()
-          }])
-          .select()
-        
-        if (error) {
+            timestamp: new Date().toISOString(),
+          }),
+        })
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}))
+          
           // Check if it's a duplicate email error
-          if (error.code === '23505' || error.message.includes('duplicate')) {
+          if (response.status === 409 || errorData.message?.includes('duplicate') || errorData.message?.includes('already')) {
             setErrorMessage('This email is already on the waitlist.')
             setIsValid(false)
           } else {
             setErrorMessage('Something went wrong. Please try again later.')
-            console.error('Error submitting email:', error)
+            console.error('Error submitting email:', response.status, errorData)
           }
           setIsLoading(false)
           return
         }
-        
-        // Success - email stored in database
-        // Now invoke the edge function to send welcome email
-        try {
-          const { data: functionData, error: functionError } = await supabase.functions.invoke('send-waitlist-email', {
-            body: { email: email.toLowerCase().trim() },
-          })
-          
-          if (functionError) {
-            // Log error but don't fail the submission - email is already in database
-            console.error('Error sending welcome email:', functionError)
-            console.error('Function error details:', JSON.stringify(functionError, null, 2))
-          } else {
-            console.log('Welcome email sent successfully:', functionData)
-          }
-        } catch (functionError) {
-          // Log error but don't fail the submission
-          console.error('Error invoking email function:', functionError)
-          console.error('Function error details:', JSON.stringify(functionError, null, 2))
-        }
+
+        const data = await response.json().catch(() => ({ success: true }))
+        console.log('Email submitted successfully:', data)
         
         setIsSubmitted(true)
         setIsLoading(false)
