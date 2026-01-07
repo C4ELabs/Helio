@@ -41,10 +41,14 @@ const Waitlist = () => {
             email: email.toLowerCase().trim(),
             timestamp: new Date().toISOString(),
           }),
+        }).catch((fetchError) => {
+          // Handle network errors (CORS, connection issues, etc.)
+          console.error('Network error:', fetchError)
+          throw new Error('Network error: Unable to connect to server. Please check your connection and try again.')
         })
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}))
+          const errorData = await response.json().catch(() => ({ message: `HTTP ${response.status} error` }))
           
           // Check if it's a duplicate email error
           if (response.status === 409 || errorData.message?.includes('duplicate') || errorData.message?.includes('already')) {
@@ -66,7 +70,13 @@ const Waitlist = () => {
         setTimeout(() => setIsSubmitted(false), 5000)
       } catch (error) {
         console.error('Error submitting email:', error)
-        setErrorMessage('Something went wrong. Please try again later.')
+        if (error.message?.includes('Network error')) {
+          setErrorMessage(error.message)
+        } else if (error.message?.includes('Failed to fetch') || error.name === 'TypeError') {
+          setErrorMessage('Unable to connect to server. Please check your internet connection and try again.')
+        } else {
+          setErrorMessage('Something went wrong. Please try again later.')
+        }
         setIsLoading(false)
       }
     } else {
