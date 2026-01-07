@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { supabase } from '../lib/supabase'
 
 const Waitlist = () => {
   const [email, setEmail] = useState('')
   const [isValid, setIsValid] = useState(true)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -15,30 +17,73 @@ const Waitlist = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setErrorMessage('')
+    
     if (validateEmail(email)) {
       setIsValid(true)
       setIsLoading(true)
       
-      // TODO: Integrate with Supabase here
-      // For now, simulate API call
       try {
-        // Placeholder for future Supabase integration
-        // const { data, error } = await supabase.from('waitlist').insert([{ email }])
+        // Insert email into Supabase waitlist table
+        const { data, error } = await supabase
+          .from('waitlist')
+          .insert([{ 
+            email: email.toLowerCase().trim(),
+            created_at: new Date().toISOString()
+          }])
+          .select()
         
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        if (error) {
+          // Check if it's a duplicate email error
+          if (error.code === '23505' || error.message.includes('duplicate')) {
+            setErrorMessage('This email is already on the waitlist.')
+            setIsValid(false)
+          } else {
+            setErrorMessage('Something went wrong. Please try again later.')
+            console.error('Error submitting email:', error)
+          }
+          setIsLoading(false)
+          return
+        }
+        
+        // Success - email stored in database
+        // Now send welcome email via Edge Function
+        try {
+          const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+          const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+          
+          if (supabaseUrl && supabaseAnonKey) {
+            const functionUrl = `${supabaseUrl}/functions/v1/send-waitlist-email`
+            
+            const emailResponse = await fetch(functionUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${supabaseAnonKey}`,
+              },
+              body: JSON.stringify({ email: email.toLowerCase().trim() }),
+            })
+
+            if (!emailResponse.ok) {
+              console.warn('Email sending failed, but user was added to waitlist')
+            }
+          }
+        } catch (emailError) {
+          console.warn('Email sending error:', emailError)
+          // Don't fail the whole process if email fails
+        }
         
         setIsSubmitted(true)
-        setEmail('')
         setIsLoading(false)
         setTimeout(() => setIsSubmitted(false), 5000)
       } catch (error) {
         console.error('Error submitting email:', error)
+        setErrorMessage('Something went wrong. Please try again later.')
         setIsLoading(false)
-        // Handle error - show message to user
       }
     } else {
       setIsValid(false)
+      setErrorMessage('Please enter a valid email address.')
     }
   }
 
@@ -83,7 +128,12 @@ const Waitlist = () => {
                       required
                       disabled={isLoading || isSubmitted}
                     />
-                    {!isValid && (
+                    {errorMessage && (
+                      <div className="invalid-feedback d-block">
+                        {errorMessage}
+                      </div>
+                    )}
+                    {!isValid && !errorMessage && (
                       <div className="invalid-feedback">
                         Please enter a valid email address.
                       </div>

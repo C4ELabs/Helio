@@ -21,9 +21,21 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
+          <ul className="navbar-nav ms-auto align-items-center">
             <li className="nav-item">
-              <Link className="nav-link" to="/waitlist">
+              <Link 
+                className="btn btn-primary" 
+                to="/waitlist"
+                style={{ 
+                  backgroundColor: '#4870b8', 
+                  borderColor: '#4870b8', 
+                  color: '#ffffff',
+                  padding: '0.5rem 1.5rem',
+                  borderRadius: '0.375rem',
+                  textDecoration: 'none',
+                  fontWeight: '500'
+                }}
+              >
                 Join Waitlist
               </Link>
             </li>

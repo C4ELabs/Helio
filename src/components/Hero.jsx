@@ -12,7 +12,7 @@ const Hero = () => {
     <section className="hero-section-main">
       <div className="container">
         <div className="row justify-content-center align-items-center hero-row">
-          <div className="col-12 col-md-10 col-lg-5">
+          <div className="col-12 col-md-10 col-lg-6">
             <div className="hero-content-wrapper">
               <h1 className="hero-heading fw-bold" style={{ color: '#ffffff' }}>
                 Consistency shouldn't feel this hard.
@@ -32,7 +32,7 @@ const Hero = () => {
               </p>
             </div>
           </div>
-          <div className="col-12 col-md-10 col-lg-5">
+          <div className="col-12 col-md-10 col-lg-6">
             <div className="hero-image-wrapper">
               {imageSrc && !imageError ? (
                 <img
