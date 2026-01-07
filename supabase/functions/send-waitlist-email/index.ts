@@ -3,14 +3,28 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY")!;
 
+// CORS headers
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
 Deno.serve(async (req) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
+  }
+
   try {
     const { email } = await req.json();
 
     if (!email) {
       return new Response(
         JSON.stringify({ error: "Email is required" }),
-        { status: 400 }
+        { 
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
       );
     }
 
@@ -18,7 +32,7 @@ Deno.serve(async (req) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${re_d5ZJpDKt_JPhFJWqeJTgErjQgyXBhn6jU}`,
+        Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
         from: "Helio <hello@heliocoach.com>",
@@ -110,18 +124,26 @@ Deno.serve(async (req) => {
     if (!res.ok) {
       return new Response(
         JSON.stringify({ error: data }),
-        { status: 500 }
+        { 
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
       );
     }
 
     return new Response(
       JSON.stringify({ success: true }),
-      { headers: { "Content-Type": "application/json" } }
+      { 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
     );
   } catch (err) {
     return new Response(
       JSON.stringify({ error: "Invalid request" }),
-      { status: 500 }
+      { 
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
     );
   }
 });
