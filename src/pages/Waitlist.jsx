@@ -23,16 +23,8 @@ const Waitlist = () => {
       setIsLoading(true)
       
       try {
-        const n8nWebhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL
-        
-        if (!n8nWebhookUrl) {
-          setErrorMessage('Service not configured. Please contact support.')
-          setIsLoading(false)
-          return
-        }
-
-        // Send email to n8n webhook
-        const response = await fetch(n8nWebhookUrl, {
+        // Send email via API route (proxies to n8n webhook)
+        const response = await fetch('/api/waitlist', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -48,14 +40,14 @@ const Waitlist = () => {
         })
 
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({ message: `HTTP ${response.status} error` }))
+          const errorData = await response.json().catch(() => ({ error: `HTTP ${response.status} error` }))
           
           // Check if it's a duplicate email error
-          if (response.status === 409 || errorData.message?.includes('duplicate') || errorData.message?.includes('already')) {
+          if (response.status === 409 || errorData.error?.includes('duplicate') || errorData.error?.includes('already')) {
             setErrorMessage('This email is already on the waitlist.')
             setIsValid(false)
           } else {
-            setErrorMessage('Something went wrong. Please try again later.')
+            setErrorMessage(errorData.error || 'Something went wrong. Please try again later.')
             console.error('Error submitting email:', response.status, errorData)
           }
           setIsLoading(false)
