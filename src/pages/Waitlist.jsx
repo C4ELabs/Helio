@@ -53,6 +53,22 @@ const Waitlist = () => {
         }
         
         // Success - email stored in database
+        // Now invoke the edge function to send welcome email
+        try {
+          const { data: functionData, error: functionError } = await supabase.functions.invoke('send-waitlist-email', {
+            body: { email: email.toLowerCase().trim() },
+          })
+          
+          if (functionError) {
+            // Log error but don't fail the submission - email is already in database
+            console.error('Error sending welcome email:', functionError)
+            // Continue with success message even if email sending fails
+          }
+        } catch (functionError) {
+          // Log error but don't fail the submission
+          console.error('Error invoking email function:', functionError)
+        }
+        
         setIsSubmitted(true)
         setIsLoading(false)
         setTimeout(() => setIsSubmitted(false), 5000)
