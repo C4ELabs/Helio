@@ -16,8 +16,8 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/landing-alt" element={<LandingAlt />} />
+        <Route path="/" element={<LandingAlt />} />
+        <Route path="/landing-alt" element={<Home />} />
         <Route path="/waitlist" element={<Waitlist />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/about" element={<About />} />
