@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10 col-xl-9">
-              <h1 className="display-4 fw-bold mb-3" style={{ color: '#4870b8' }}>
+              <h1 className="display-4 fw-bold mb-3" style={{ color: '#496fb6' }}>
                 Support & Help Center
               </h1>
               <p className="lead mb-4">
@@ -19,10 +19,10 @@ const Contact = () => {
               <div className="mb-4 pb-3 border-bottom">
                 <h3 className="h5 fw-semibold mb-3">Quick Links</h3>
                 <ul>
-                  <li><a href="#getting-started" className="text-decoration-none" style={{ color: '#4870b8' }}><strong>Getting Started</strong></a></li>
-                  <li><a href="#common-issues" className="text-decoration-none" style={{ color: '#4870b8' }}><strong>Common Issues</strong></a></li>
-                  <li><a href="#account-billing" className="text-decoration-none" style={{ color: '#4870b8' }}><strong>Account & Billing</strong></a></li>
-                  <li><a href="#contact-support" className="text-decoration-none" style={{ color: '#4870b8' }}><strong>Contact Support</strong></a></li>
+                  <li><a href="#getting-started" className="text-decoration-none" style={{ color: '#496fb6' }}><strong>Getting Started</strong></a></li>
+                  <li><a href="#common-issues" className="text-decoration-none" style={{ color: '#496fb6' }}><strong>Common Issues</strong></a></li>
+                  <li><a href="#account-billing" className="text-decoration-none" style={{ color: '#496fb6' }}><strong>Account & Billing</strong></a></li>
+                  <li><a href="#contact-support" className="text-decoration-none" style={{ color: '#496fb6' }}><strong>Contact Support</strong></a></li>
                 </ul>
               </div>
 
@@ -369,7 +369,7 @@ const Contact = () => {
                 </section>
 
                 <section className="mb-5">
-                  <p className="lead fw-semibold" style={{ color: '#4870b8' }}>
+                  <p className="lead fw-semibold" style={{ color: '#496fb6' }}>
                     Thank you for choosing HelioCoach! We're here to support you on your journey.
                   </p>
                 </section>

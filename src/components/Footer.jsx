@@ -40,7 +40,7 @@ const Footer = () => {
         <div className="row">
           <div className="col-12 text-center">
             <p className="footer-copyright">
-              &copy; {currentYear} Helio. All rights reserved.
+              &copy; {currentYear} HelioCoach. All rights reserved.
             </p>
           </div>
         </div>

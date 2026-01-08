@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="HelioCoach" className="me-2" />
-          <span style={{ color: '#4870b8' }}>HelioCoach</span>
+          <span style={{ color: '#496fb6' }}>HelioCoach</span>
         </Link>
         <button
           className="navbar-toggler"
@@ -27,8 +27,8 @@ const Navbar = () => {
                 className="btn btn-primary" 
                 to="/waitlist"
                 style={{ 
-                  backgroundColor: '#4870b8', 
-                  borderColor: '#4870b8', 
+                  backgroundColor: '#496fb6', 
+                  borderColor: '#496fb6', 
                   color: '#ffffff',
                   padding: '0.5rem 1.5rem',
                   borderRadius: '0.375rem',

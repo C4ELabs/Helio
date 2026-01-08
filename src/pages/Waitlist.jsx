@@ -112,7 +112,7 @@ const Waitlist = () => {
             <div className="col-lg-6 col-md-8">
               <div className="waitlist-card">
                 <div className="text-center mb-5">
-                  <h1 className="display-5 fw-bold mb-3" style={{ color: '#4870b8' }}>
+                  <h1 className="display-5 fw-bold mb-3" style={{ color: '#496fb6' }}>
                     Join the Waitlist
                   </h1>
                   <p className="lead text-muted">

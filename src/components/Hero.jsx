@@ -1,12 +1,44 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import heroImage from '../assets/images/Suppliments image.jpeg'
 
 const Hero = () => {
   const [imageError, setImageError] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [shouldLoadImage, setShouldLoadImage] = useState(false)
+  const imageRef = useRef(null)
   
   const imageSrc = heroImage
 
+  // Lazy load image when it comes into viewport or after initial render
+  useEffect(() => {
+    // Load image after a short delay to prioritize essential content
+    const timer = setTimeout(() => {
+      setShouldLoadImage(true)
+    }, 100)
+
+    // Intersection Observer for lazy loading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoadImage(true)
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin: '50px' }
+    )
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current)
+    }
+
+    return () => {
+      clearTimeout(timer)
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <section className="hero-section-main">
@@ -23,7 +55,7 @@ const Hero = () => {
               <Link
                 to="/waitlist"
                 className="btn btn-light hero-cta-btn"
-                style={{ backgroundColor: '#ffffff', color: '#4870b8', border: 'none', textDecoration: 'none', display: 'inline-block' }}
+                style={{ backgroundColor: '#ffffff', color: '#496fb6', border: 'none', textDecoration: 'none', display: 'inline-block' }}
               >
                 Join the waitlist
               </Link>
@@ -33,12 +65,16 @@ const Hero = () => {
             </div>
           </div>
           <div className="col-12 col-md-10 col-lg-6">
-            <div className="hero-image-wrapper">
-              {imageSrc && !imageError ? (
+            <div className="hero-image-wrapper" ref={imageRef}>
+              {shouldLoadImage && imageSrc && !imageError ? (
                 <img
                   src={imageSrc}
                   alt="Supplements in glass containers"
-                  className="img-fluid rounded hero-image"
+                  className={`img-fluid rounded hero-image ${imageLoaded ? 'hero-image-loaded' : 'hero-image-loading'}`}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  onLoad={() => setImageLoaded(true)}
                   onError={() => setImageError(true)}
                 />
               ) : (
@@ -48,7 +84,7 @@ const Hero = () => {
                   width: '100%',
                   minHeight: '400px',
                   backgroundColor: '#e8ecf5',
-                  color: '#4870b8',
+                  color: '#496fb6',
                   fontSize: '14px',
                   textAlign: 'center',
                   padding: '20px',

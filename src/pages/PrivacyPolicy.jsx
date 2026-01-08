@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-10 col-xl-9">
-              <h1 className="display-4 fw-bold mb-3" style={{ color: '#4870b8' }}>
+              <h1 className="display-4 fw-bold mb-3" style={{ color: '#496fb6' }}>
                 Privacy Policy
               </h1>
               <div className="mb-4 pb-3 border-bottom">
