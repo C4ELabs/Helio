@@ -3,7 +3,7 @@ import logo from '../assets/logo.jpeg'
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white">
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="HelioCoach" className="me-2" />

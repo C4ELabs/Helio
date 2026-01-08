@@ -4,12 +4,12 @@ import heroImage from '../assets/images/Hero_Image_2.png'
 const HeroAlt = () => {
   return (
     <section className="hero-alt-section">
-      <div className="container-fluid">
-        <div className="row min-vh-100 align-items-center justify-content-center">
+      <div className="container">
+        <div className="row align-items-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           {/* Left: Text */}
-          <div className="col-12 col-lg-6 px-lg-5">
+          <div className="col-12 col-lg-6">
             <div className="hero-alt-content-wrapper">
-              <h1 className="hero-alt-heading fw-bold">
+              <h1 className="hero-alt-heading">
                 Consistency shouldn't feel this hard.
               </h1>
               <div className="hero-alt-text-content">
@@ -34,13 +34,15 @@ const HeroAlt = () => {
             </div>
           </div>
 
-          {/* Right: Image */}
-          <div 
-            className="col-12 col-lg-6 hero-alt-image"
-            style={{ 
-              '--hero-image-url': `url(${heroImage})`
-            }}
-          ></div>
+          {/* Right: Image - extends to edge */}
+          <div className="col-12 col-lg-6 p-0">
+            <div 
+              className="hero-alt-image"
+              style={{ 
+                '--hero-image-url': `url(${heroImage})`
+              }}
+            ></div>
+          </div>
         </div>
       </div>
     </section>
