@@ -1,9 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.jpeg'
 
 const Navbar = () => {
+  const location = useLocation()
+  const isWaitlistPage = location.pathname === '/waitlist'
+  
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white">
+    <nav className={`navbar navbar-expand-lg navbar-light bg-white ${isWaitlistPage ? 'navbar-waitlist-page' : ''}`}>
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src={logo} alt="HelioCoach" className="me-2" />

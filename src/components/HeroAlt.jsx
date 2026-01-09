@@ -4,7 +4,21 @@ import heroImage from '../assets/images/Hero_Image_2.png'
 
 const HeroAlt = () => {
   const [shouldLoadImage, setShouldLoadImage] = useState(false)
+  const [isAppleDevice, setIsAppleDevice] = useState(false)
   const imageContainerRef = useRef(null)
+  const sectionRef = useRef(null)
+
+  // Detect Apple devices
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera
+    const isApple = /Mac|iPhone|iPad|iPod/.test(userAgent) || 
+                    (navigator.platform && /Mac|iPhone|iPad|iPod/.test(navigator.platform))
+    setIsAppleDevice(isApple)
+    
+    if (sectionRef.current && isApple) {
+      sectionRef.current.classList.add('apple-device')
+    }
+  }, [])
 
   // Lazy load background image when it comes into viewport
   useEffect(() => {
@@ -36,7 +50,7 @@ const HeroAlt = () => {
   }, [])
 
   return (
-    <section className="hero-alt-section">
+    <section ref={sectionRef} className="hero-alt-section">
       <div className="container">
         <div className="row align-items-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           {/* Left: Text */}
@@ -55,7 +69,7 @@ const HeroAlt = () => {
                   to="/waitlist"
                   className="btn btn-primary hero-alt-btn"
                 >
-                  Join the waitlist
+                  Join Waitlist
                 </Link>
                 <p className="hero-alt-microcopy mb-0">
                   No spam. Early access when we launch.

@@ -36,7 +36,7 @@ const CTA = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-6 text-center">
-            <h2 className="h3 mb-4">Join the Waitlist</h2>
+            <h2 className="h3 mb-4">Join Waitlist</h2>
             <form onSubmit={handleSubmit} className="mb-4">
               <div className="input-group input-group-lg">
                 <input
@@ -48,7 +48,7 @@ const CTA = () => {
                   required
                 />
                 <button className="btn btn-primary" type="submit">
-                  Join the waitlist
+                  Join Waitlist
                 </button>
               </div>
               {!isValid && (

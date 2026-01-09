@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
@@ -8,6 +8,18 @@ const Waitlist = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const sectionRef = useRef(null)
+
+  // Detect Apple devices
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera
+    const isApple = /Mac|iPhone|iPad|iPod/.test(userAgent) || 
+                    (navigator.platform && /Mac|iPhone|iPad|iPod/.test(navigator.platform))
+    
+    if (sectionRef.current && isApple) {
+      sectionRef.current.classList.add('apple-device')
+    }
+  }, [])
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -106,14 +118,14 @@ const Waitlist = () => {
   return (
     <>
       <Navbar />
-      <section className="waitlist-section py-5 py-lg-6">
+      <section ref={sectionRef} className="waitlist-section">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-lg-6 col-md-8">
+            <div className="col-lg-6 col-md-8 col-10">
               <div className="waitlist-card">
                 <div className="text-center mb-5">
                   <h1 className="display-5 fw-bold mb-3" style={{ color: '#496fb6' }}>
-                    Join the Waitlist
+                    Join Waitlist
                   </h1>
                   <p className="lead text-muted">
                     Be the first to know when Helio launches. We'll notify you as soon as it's ready.
@@ -166,7 +178,7 @@ const Waitlist = () => {
                     ) : isSubmitted ? (
                       '✓ Joined!'
                     ) : (
-                      'Join the Waitlist'
+                      'Join Waitlist'
                     )}
                   </button>
                 </form>

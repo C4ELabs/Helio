@@ -5,6 +5,10 @@
   --helio-dark: #496fb6;
   --helio-black: #000000;
   
+  /* Bootstrap color overrides - ensure Bootstrap uses our blue */
+  --bs-primary: #496fb6;
+  --bs-primary-rgb: 73, 111, 182;
+  
   /* Font families - Global font system */
   /* Headings, subheadings use Montserrat (sans-serif) */
   --font-heading: 'Montserrat', sans-serif;
@@ -37,21 +41,21 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 }
 
 .btn-primary {
-  background-color: var(--helio-primary);
-  border-color: var(--helio-primary);
-  color: #ffffff;
+  background-color: #496fb6 !important;
+  border-color: #496fb6 !important;
+  color: #ffffff !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-  background-color: #496fb6;
-  border-color: #496fb6;
-  color: #ffffff;
+  background-color: #496fb6 !important;
+  border-color: #496fb6 !important;
+  color: #ffffff !important;
 }
 
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.25rem rgba(73, 111, 182, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(73, 111, 182, 0.25) !important;
 }
 
 html {
@@ -149,15 +153,21 @@ h3, h4, h5, h6,
 .navbar.border-bottom,
 .navbar-light,
 .navbar-expand-lg {
-  border-bottom: none !important;
   border: none !important;
 }
 
 /* Ensure no gap between navbar and hero section */
 .navbar + .hero-alt-section,
-.navbar + section {
+.navbar + section:not(.waitlist-section) {
   margin-top: 0 !important;
   padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* Spacing for waitlist section (no border, just spacing) */
+.navbar + .waitlist-section {
+  margin-top: 0 !important;
+  padding-top: 4rem !important;
   border-top: none !important;
 }
 
@@ -257,7 +267,7 @@ html {
 }
 
 .footer-description {
-  color: #666666;
+  color: #000000;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -271,7 +281,7 @@ html {
 }
 
 .footer-copyright {
-  color: #666666;
+  color: #000000;
   font-size: 0.875rem;
   margin: 0;
   margin-top: 0;
@@ -304,13 +314,18 @@ html {
   color: var(--helio-dark) !important;
 }
 
+/* Override Bootstrap text-muted to use black instead of grey */
+.text-muted {
+  color: #000000 !important;
+}
+
 /* Link colors */
 a {
-  color: var(--helio-primary);
+  color: #496fb6 !important;
 }
 
 a:hover {
-  color: #496fb6;
+  color: #496fb6 !important;
 }
 
 /* Navbar link colors */
@@ -576,7 +591,7 @@ a:hover {
 .contact-intro {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #333333;
+  color: #000000;
   margin-bottom: 2rem;
   font-weight: 400;
   font-family: var(--font-body);
@@ -589,7 +604,7 @@ a:hover {
 .contact-text {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333333;
+  color: #000000;
   margin-bottom: 0;
   font-family: var(--font-body);
 }
@@ -923,7 +938,7 @@ a:hover {
 .hero-alt-heading {
   font-size: 2.5rem;
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 0.9;
   letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
   color: #496fb6;
@@ -931,20 +946,88 @@ a:hover {
   text-align: left !important;
   max-width: 100%;
   width: 100%;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  overflow-wrap: normal;
+  word-wrap: normal;
   white-space: normal;
   padding-right: 0;
 }
 
 .hero-alt-heading br {
   display: block;
-  margin-top: -0.3em;
+  margin-top: 0.2em;
   line-height: 0;
 }
 
+/* Ensure justified alignment works properly with line breaks */
+.hero-alt-section.apple-device .hero-alt-heading br {
+  margin-top: 0.3em;
+}
+
+/* Apple device specific styles for hero heading */
+.hero-alt-section.apple-device .hero-alt-heading {
+  text-align: justify !important;
+  text-align-last: justify !important;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  word-spacing: 0.02em;
+  hyphens: none;
+}
+
+@media (min-width: 768px) {
+  .hero-alt-section.apple-device .hero-alt-heading {
+    font-size: 2.5rem;
+    line-height: 1.15;
+    text-align: justify !important;
+    text-align-last: justify !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-alt-section.apple-device .hero-alt-heading {
+    font-size: 2.75rem;
+    line-height: 1.15;
+    text-align: justify !important;
+    text-align-last: justify !important;
+  }
+
+}
+
+/* Smaller screens - ensure two lines with justified alignment */
+@media (max-width: 767px) {
+  .hero-alt-heading {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .hero-alt-section.apple-device .hero-alt-heading {
+    text-align: justify !important;
+    text-align-last: justify !important;
+    font-size: 2rem;
+    line-height: 1.2;
+    word-spacing: 0.02em;
+    hyphens: none;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .hero-alt-heading {
+    font-size: 1.75rem;
+    line-height: 1.25;
+  }
+
+  .hero-alt-section.apple-device .hero-alt-heading {
+    text-align: justify !important;
+    text-align-last: justify !important;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    word-spacing: 0.03em;
+    hyphens: none;
+  }
+}
+
 .hero-alt-text-content {
-  color: #333333;
+  color: #000000;
   font-size: 1.05rem;
   line-height: 1.3;
   text-align: left !important;
@@ -960,7 +1043,7 @@ a:hover {
 
 .hero-alt-text-content p {
   margin: 0 !important;
-  color: #333333;
+  color: #000000;
   text-align: left !important;
   font-family: var(--font-body);
   overflow-wrap: break-word;
@@ -1002,7 +1085,7 @@ a:hover {
 
 .hero-alt-microcopy {
   font-size: 0.8rem;
-  color: #666666;
+  color: #000000;
   margin-top: 0.25rem;
   line-height: 1.4;
   margin-bottom: 0;
@@ -1025,7 +1108,7 @@ a:hover {
   
   .hero-alt-heading {
     font-size: 3rem;
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 1.75rem;
     max-width: 100%;
     width: 100%;
@@ -1052,7 +1135,7 @@ a:hover {
   
   .hero-alt-heading {
     font-size: 3.5rem;
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 2rem;
     max-width: 100%;
     width: 100%;
@@ -1107,7 +1190,7 @@ a:hover {
   
   .hero-alt-heading {
     font-size: 1.75rem;
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 1rem;
     max-width: 100%;
     width: 100%;
@@ -1178,7 +1261,7 @@ a:hover {
   
   .hero-alt-heading {
     font-size: 1.5rem;
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 0.875rem;
   }
   
@@ -1226,7 +1309,7 @@ a:hover {
 /* Privacy Policy and Legal Pages Styling */
 .privacy-content {
   line-height: 1.8;
-  color: #333333;
+  color: #000000;
 }
 
 .privacy-content h2 {
@@ -1337,7 +1420,7 @@ section[id] {
 .feature-body {
   font-size: 0.9rem;
   line-height: 1.7;
-  color: #333333;
+  color: #000000;
   margin-bottom: 1.25rem;
   font-weight: 400;
   font-family: var(--font-body);
@@ -1352,7 +1435,7 @@ section[id] {
 .feature-list-item {
   font-size: 1rem;
   line-height: 1.75;
-  color: #333333;
+  color: #000000;
   margin-bottom: 0.875rem;
   padding-left: 2rem;
   position: relative;
@@ -1413,7 +1496,7 @@ section[id] {
 
 .feature-icon-text {
   font-size: 0.8rem;
-  color: #333333;
+  color: #000000;
   margin: 0;
   font-family: var(--font-body);
 }
@@ -1456,7 +1539,7 @@ section[id] {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #666666;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
@@ -1472,6 +1555,10 @@ section[id] {
   min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
+  padding-top: 4rem !important;
+  padding-bottom: 4rem;
+  margin-top: 0 !important;
+  border-top: none !important;
 }
 
 .waitlist-card {
@@ -1482,6 +1569,38 @@ section[id] {
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(73, 111, 182, 0.1);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Apple device specific styling for waitlist */
+.waitlist-section.apple-device .waitlist-card {
+  max-width: 85%;
+}
+
+.waitlist-section.apple-device .col-10,
+.waitlist-section.apple-device .col-md-8 {
+  max-width: 85%;
+  margin: 0 auto;
+}
+
+/* Desktop/large screens for Apple devices */
+@media (min-width: 992px) {
+  .waitlist-section.apple-device .col-lg-6 {
+    max-width: 75%;
+    margin: 0 auto;
+  }
+
+  .waitlist-section.apple-device .waitlist-card {
+    max-width: 90%;
+    padding: 3rem 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .waitlist-section.apple-device .col-lg-6 {
+    max-width: 70%;
+  }
 }
 
 .waitlist-card::before {
@@ -1497,11 +1616,117 @@ section[id] {
 @media (max-width: 768px) {
   .waitlist-card {
     padding: 2rem 1.5rem;
+    max-width: 82%;
+    margin: 0 auto;
   }
   
   .waitlist-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 5rem !important;
+    padding-bottom: 3rem;
+    min-height: auto;
+    align-items: flex-start;
+    margin-top: 0 !important;
+  }
+  
+  .waitlist-section .container {
+    margin-top: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .waitlist-section .col-10 {
+    max-width: 82%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Apple devices on tablet/small screens */
+  .waitlist-section.apple-device .waitlist-card {
+    max-width: 80%;
+    padding: 2rem 1.75rem;
+  }
+
+  .waitlist-section.apple-device .col-10 {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .waitlist-section {
+    padding-top: 4rem !important;
+    padding-bottom: 2.5rem;
+    margin-top: 0 !important;
+  }
+  
+  .waitlist-section .container {
+    margin-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .waitlist-card {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1.75rem 1.5rem;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .waitlist-section .col-10 {
+    max-width: 85%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Apple devices on mobile */
+  .waitlist-section.apple-device .waitlist-card {
+    max-width: 80%;
+    padding: 2rem 1.5rem;
+  }
+
+  .waitlist-section.apple-device .col-10 {
+    max-width: 80%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Reduce form element width on small screens */
+  .waitlist-card .form-control,
+  .waitlist-card .btn {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ensure content doesn't stretch too wide */
+  .waitlist-card .text-center,
+  .waitlist-card form {
+    max-width: 100%;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .waitlist-section {
+    padding-top: 3.5rem !important;
+    margin-top: 0 !important;
+  }
+
+  .waitlist-card {
+    max-width: 88%;
+    padding: 1.5rem 1.25rem;
+  }
+
+  .waitlist-section .col-10 {
+    max-width: 88%;
+  }
+
+  .waitlist-section.apple-device .waitlist-card {
+    max-width: 82%;
+  }
+
+  .waitlist-section.apple-device .col-10 {
+    max-width: 82%;
   }
 }
 
@@ -1548,7 +1773,7 @@ section[id] {
 .intro-text {
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #333333;
+  color: #000000;
   margin-bottom: 1rem;
   font-family: var(--font-body);
 }
@@ -1687,7 +1912,7 @@ section[id] {
 @media screen and (max-width: 390px) {
   .hero-alt-heading {
     font-size: 1.35rem;
-    line-height: 1.1;
+    line-height: 0.9;
     margin-bottom: 0.75rem;
   }
   

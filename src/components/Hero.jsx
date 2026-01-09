@@ -57,7 +57,7 @@ const Hero = () => {
                 className="btn btn-light hero-cta-btn"
                 style={{ backgroundColor: '#ffffff', color: '#496fb6', border: 'none', textDecoration: 'none', display: 'inline-block' }}
               >
-                Join the waitlist
+                Join Waitlist
               </Link>
               <p className="hero-microcopy">
                 You're not broken. Most tools just aren't built for reality.
