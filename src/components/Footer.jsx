@@ -6,9 +6,9 @@ const Footer = () => {
   return (
     <footer className="footer-section mt-auto">
       <div className="container">
-        <div className="row g-4 g-lg-5 mb-4">
+        <div className="row g-4 g-lg-5 mb-3">
           <div className="col-md-6">
-            <h5 className="footer-heading mb-3">Explore</h5>
+            <h5 className="footer-heading">Explore</h5>
             <div className="d-flex flex-wrap gap-3">
               <Link to="/blog" className="footer-link">
                 Blog
@@ -22,7 +22,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="col-md-6">
-            <h5 className="footer-heading mb-3">Resources</h5>
+            <h5 className="footer-heading">Resources</h5>
             <div className="d-flex flex-wrap gap-3">
               <Link to="/privacy-policy" className="footer-link">
                 Privacy Policy

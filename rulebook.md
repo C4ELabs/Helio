@@ -72,41 +72,61 @@ This document contains critical design rules and standards that must be followed
 
 ### Font Families
 
+**CRUCIAL RULE:** Only two fonts are used throughout the entire website:
+- **Montserrat** - All headings, subheadings, buttons, resources
+- **Lora** - All body copy and microcopy only
+
 #### Heading Font
 - **CSS Variable:** `--font-heading`
-- **Font Stack:** `'Montserrat', 'Lexend', 'Roboto Flex', sans-serif`
-- **Use For:** All heading elements (h1, h2, h3, h4, h5, h6), section headings, feature headings
+- **Font Stack:** `'Montserrat', sans-serif`
+- **Use For:** All heading elements (h1, h2, h3, h4, h5, h6), section headings, feature headings, subheadings
 - **Weight:** 700 (bold) for headings
 - **Line Height:**
-  - **H1, H2 (Headings):** `1.1 - 1.4` (Recommended: 1.3)
-  - **H3, H4+ (Subheadings):** `1.3 - 1.5` (Recommended: 1.4)
+  - **H1, H2 (Headings):** `1.1 - 1.4`
+  - **H3, H4+ (Subheadings):** `1.3 - 1.5`
 
 #### Display Font
 - **CSS Variable:** `--font-display`
-- **Font Stack:** `'Montserrat', 'Lexend', sans-serif`
+- **Font Stack:** `'Montserrat', sans-serif`
 - **Use For:** Navbar brand, display text, prominent headings
 
 #### Body Font
 - **CSS Variable:** `--font-body`
-- **Font Stack:** `'Lora', 'Lexend', 'Roboto Flex', sans-serif`
-- **Use For:** Body text, paragraphs, labels, form inputs, links, lists, most UI text
+- **Font Stack:** `'Lora', serif`
+- **Use For:** Body text, paragraphs, labels, form inputs, links, lists, microcopy, most UI text
 - **Weight:** 400 (regular) for body text
 
 #### Special Font
 - **CSS Variable:** `--font-special`
-- **Font Stack:** `'Montserrat', 'Tektur', 'Orbitron', sans-serif`
+- **Font Stack:** `'Montserrat', sans-serif`
 - **Use For:** Section labels, special callouts, decorative text
 
 #### Button Font
 - **CSS Variable:** `--font-button`
-- **Font Stack:** `'Montserrat', 'Lexend', 'Roboto Flex', sans-serif`
+- **Font Stack:** `'Montserrat', sans-serif`
 - **Use For:** All buttons, call-to-action elements
 - **Weight:** 500 (medium)
+
+#### Resources Font
+- **Use:** `'Montserrat', sans-serif` (via `--font-heading`)
+- **Use For:** All resource headings, footer resource sections
+
+#### Microcopy Font
+- **Use:** `'Lora', serif` (via `--font-body`)
+- **Use For:** All microcopy text (e.g., `.hero-microcopy`, `.hero-alt-microcopy`)
 
 #### Monospace Font
 - **CSS Variable:** `--font-mono`
 - **Font Stack:** `'Source Code Pro', monospace`
 - **Use For:** Code blocks, technical content (if needed)
+
+#### Deprecated Fonts (DO NOT USE):
+- ❌ Lexend
+- ❌ Roboto Flex
+- ❌ Lex Sans Serif
+- ❌ Tektur
+- ❌ Orbitron
+- ❌ Any other fonts not listed above
 
 ### Base Typography Settings
 
@@ -130,12 +150,22 @@ This document contains critical design rules and standards that must be followed
 
 ### Font Usage Rules
 
-1. **Always use CSS variables** for font families: `font-family: var(--font-heading)`
-2. **Headings** must use `--font-heading` or `--font-display`
-3. **Body content** must use `--font-body`
-4. **Buttons** must use `--font-button`
-5. **Maintain font hierarchy** - don't mix heading and body fonts incorrectly
-6. **Mobile responsive:** Font sizes should scale appropriately on smaller screens
+1. **Always use CSS variables** for font families: `font-family: var(--font-heading)` or `font-family: var(--font-body)`
+2. **Montserrat** must be used for:
+   - All headings (h1-h6)
+   - All subheadings
+   - All buttons
+   - All resource sections
+   - Navbar brand and display text
+   - Section labels and special callouts
+3. **Lora** must be used for:
+   - All body copy (paragraphs, spans, divs, etc.)
+   - All microcopy text
+   - Form inputs, labels, links, lists
+   - Any non-heading text content
+4. **Maintain font hierarchy** - don't mix heading and body fonts incorrectly
+5. **Mobile responsive:** Font sizes should scale appropriately on smaller screens
+6. **No fallback fonts** - Only Montserrat and Lora are imported and used
 
 ---
 

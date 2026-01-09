@@ -47,10 +47,7 @@ const HeroAlt = () => {
               </h1>
               <div className="hero-alt-text-content">
                 <p>
-                  HelioCoach is a supplement compliance app designed for real life - missed days, travel, and all.
-                </p>
-                <p className="fw-medium">
-                  You're not broken. Most tools just aren't built <br />for reality.
+                  HelioCoach is a supplement compliance app designed for real life - missed days, travel, and all. You're not broken. Most tools just aren't built for reality.
                 </p>
               </div>
               <div className="hero-alt-cta-section">
