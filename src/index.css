@@ -955,6 +955,7 @@ a:hover {
   word-wrap: normal;
   white-space: normal;
   padding-right: 0;
+  transform: none;
 }
 
 .hero-alt-heading br {
@@ -963,11 +964,28 @@ a:hover {
   line-height: 0;
 }
 
-/* Apple devices - larger font size and maximized width to minimize negative space */
-.hero-alt-section.apple-device .hero-alt-heading {
-  font-size: 3rem;
-  max-width: 99%;
-  width: 99%;
+/* Apple devices - perfect fit styles (Mac/Apple devices only) */
+.hero-alt-section.apple-device .hero-alt-heading,
+.hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+  font-size: 3.25rem !important;
+  max-width: 97% !important;
+  width: 97% !important;
+  letter-spacing: 0.04em !important;
+  word-spacing: 0.11em !important;
+  line-height: 1.15 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  transform: scaleX(1.01) !important;
+  transform-origin: left center !important;
+  box-sizing: border-box !important;
+  padding-bottom: 0.5rem !important;
+}
+
+
+/* Apple devices - ensure each line fills width */
+.hero-alt-section.apple-device .hero-alt-heading br {
+  display: block;
+  margin-top: 0.2em;
 }
 
 .hero-alt-text-content {
@@ -1071,15 +1089,25 @@ a:hover {
     width: 100%;
   }
 
-  /* Apple devices - larger font size and expanded width */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    font-size: 3.75rem;
-    max-width: 97%;
-    width: 97%;
+  /* Apple devices - larger font size and maximized width to fill container */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    font-size: 4.25rem !important;
+    max-width: 97% !important;
+    width: 97% !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.14em !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    transform: scaleX(1.02) !important;
+    transform-origin: left center !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.5rem !important;
   }
 
   .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
-    padding-right: 0.5rem;
+    padding-right: 0;
   }
 
   .hero-alt-section.apple-device .hero-alt-content-wrapper {
@@ -1120,11 +1148,20 @@ a:hover {
     width: 100%;
   }
 
-  /* Apple devices - larger font size and maximized width to minimize negative space */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    font-size: 4.5rem;
-    max-width: 99%;
-    width: 99%;
+  /* Apple devices - larger font size and maximized width to fill container completely */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    font-size: 5rem !important;
+    max-width: 97% !important;
+    width: 97% !important;
+    letter-spacing: 0.06em !important;
+    word-spacing: 0.17em !important;
+    line-height: 1.15 !important;
+    transform: scaleX(1.02) !important;
+    transform-origin: left center !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.5rem !important;
   }
 
   .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
@@ -1160,10 +1197,20 @@ a:hover {
 
 /* 13" Notebook / Smaller desktop screens (1280px range) - maximize width */
 @media (min-width: 992px) and (max-width: 1399px) {
-  /* Apple devices - absolute maximum width for smaller desktop screens */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    max-width: 99.5%;
-    width: 99.5%;
+  /* Apple devices - 13" screen perfect fit (MacBook Air/Pro 13") */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    font-size: 4.75rem !important;
+    max-width: 97% !important;
+    width: 97% !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.14em !important;
+    line-height: 1.15 !important;
+    transform: scaleX(1.02) !important;
+    transform-origin: left center !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.5rem !important;
   }
 
   .hero-alt-section.apple-device .hero-alt-text-content {
@@ -1179,11 +1226,20 @@ a:hover {
 
 /* Very large screens (large Mac desktops, iMac 27") */
 @media (min-width: 1200px) {
-  /* Apple devices - maintain maximized width on very large Mac screens */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    font-size: 4.5rem;
-    max-width: 99%;
-    width: 99%;
+  /* Apple devices - maintain maximized width on very large Mac screens (iMac 27") - perfect fit */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    font-size: 5.5rem !important;
+    max-width: 97% !important;
+    width: 97% !important;
+    letter-spacing: 0.07em !important;
+    word-spacing: 0.19em !important;
+    line-height: 1.15 !important;
+    transform: scaleX(1.03) !important;
+    transform-origin: left center !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.5rem !important;
   }
 
   .hero-alt-section.apple-device .hero-alt-text-content {
@@ -1258,11 +1314,21 @@ a:hover {
     letter-spacing: -0.01em;
   }
 
-  /* Apple devices - larger font size and maximized width */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    font-size: 2.5rem;
-    max-width: 99%;
-    width: 99%;
+  /* Apple devices - larger font size and maximized width to fill container (mobile) */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    font-size: 3rem !important;
+    max-width: 97% !important;
+    width: 97% !important;
+    letter-spacing: 0.04em !important;
+    word-spacing: 0.1em !important;
+    line-height: 1.15 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    transform: scaleX(1.01) !important;
+    transform-origin: left center !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.5rem !important;
   }
 
   /* Apple devices - maximized text content width */
@@ -1990,11 +2056,20 @@ section[id] {
     margin-bottom: 0.75rem;
   }
 
-  /* Apple devices - expanded width on small screens */
-  .hero-alt-section.apple-device .hero-alt-heading {
-    max-width: 98%;
-    width: 98%;
-    font-size: 1.5rem;
+  /* Apple devices - expanded width on small screens (iPhone) - perfect fit */
+  .hero-alt-section.apple-device .hero-alt-heading,
+  .hero-alt-section[data-apple-device="true"] .hero-alt-heading {
+    max-width: 97% !important;
+    width: 97% !important;
+    font-size: 1.85rem !important;
+    letter-spacing: 0.03em !important;
+    word-spacing: 0.08em !important;
+    line-height: 1.15 !important;
+    transform: scaleX(1.01) !important;
+    transform-origin: left center !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    padding-bottom: 0.3rem !important;
   }
 
   .hero-alt-section.apple-device .hero-alt-text-content {

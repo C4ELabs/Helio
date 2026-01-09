@@ -13,6 +13,9 @@ const Footer = () => {
               <Link to="/blog" className="footer-link">
                 Blog
               </Link>
+              <a href="https://www.instagram.com/heliocoach/?hl=en" target="_blank" rel="noopener noreferrer" className="footer-link">
+                Instagram
+              </a>
               <Link to="/about" className="footer-link">
                 About
               </Link>

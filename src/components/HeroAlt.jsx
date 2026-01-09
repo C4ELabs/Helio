@@ -8,15 +8,49 @@ const HeroAlt = () => {
   const imageContainerRef = useRef(null)
   const sectionRef = useRef(null)
 
-  // Detect Apple devices
+  // Detect Apple devices on mount
   useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera
-    const isApple = /Mac|iPhone|iPad|iPod/.test(userAgent) || 
-                    (navigator.platform && /Mac|iPhone|iPad|iPod/.test(navigator.platform))
+    if (typeof navigator === 'undefined') return
+    
+    const userAgent = navigator.userAgent || ''
+    const platform = navigator.platform || ''
+    const vendor = navigator.vendor || ''
+    
+    // Check multiple indicators
+    const checks = [
+      /Mac|iPhone|iPad|iPod/i.test(userAgent),
+      /Mac|iPhone|iPad|iPod/i.test(platform),
+      /MacIntel|MacPPC|Mac68K/i.test(platform),
+      /Apple/i.test(vendor),
+      (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /Mac/i.test(platform))
+    ]
+    
+    const isApple = checks.some(check => check === true)
+    
+    console.log('🔍 Device detection:', {
+      userAgent,
+      platform,
+      vendor,
+      maxTouchPoints: navigator.maxTouchPoints,
+      isApple,
+      checks
+    })
+    
     setIsAppleDevice(isApple)
     
-    if (sectionRef.current && isApple) {
-      sectionRef.current.classList.add('apple-device')
+    // Apply class immediately
+    if (sectionRef.current) {
+      if (isApple) {
+        sectionRef.current.classList.add('apple-device')
+        sectionRef.current.setAttribute('data-apple-device', 'true')
+        console.log('✅ Apple device class applied to section element')
+        console.log('✅ Section classes:', sectionRef.current.className)
+        console.log('✅ Section data-attr:', sectionRef.current.getAttribute('data-apple-device'))
+      } else {
+        sectionRef.current.classList.remove('apple-device')
+        sectionRef.current.removeAttribute('data-apple-device')
+        console.log('❌ Not an Apple device - class removed')
+      }
     }
   }, [])
 
@@ -50,7 +84,7 @@ const HeroAlt = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="hero-alt-section">
+    <section ref={sectionRef} className={`hero-alt-section${isAppleDevice ? ' apple-device' : ''}`}>
       <div className="container">
         <div className="row align-items-center" style={{ minHeight: 'calc(100vh - 80px)' }}>
           {/* Left: Text */}
