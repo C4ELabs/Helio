@@ -855,9 +855,9 @@ a:hover {
   padding-left: 1rem;
 }
 
-/* Apple devices - reduced padding to bring text closer to image */
+/* Apple devices - minimal padding to bring text closer to image */
 .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
-  padding-right: 1rem;
+  padding-right: 0.5rem;
 }
 
 .hero-alt-image {
@@ -966,8 +966,8 @@ a:hover {
 /* Apple devices - larger font size to reduce negative space */
 .hero-alt-section.apple-device .hero-alt-heading {
   font-size: 3rem;
-  max-width: 95%;
-  width: 95%;
+  max-width: 98%;
+  width: 98%;
 }
 
 .hero-alt-text-content {
@@ -985,10 +985,15 @@ a:hover {
   padding: 0;
 }
 
-/* Apple devices - reduce spacing */
+/* Apple devices - expand container width to bring text closer to image */
 .hero-alt-section.apple-device .hero-alt-text-content {
-  max-width: 95%;
-  width: 95%;
+  max-width: 98%;
+  width: 98%;
+}
+
+.hero-alt-section.apple-device .hero-alt-content-wrapper {
+  max-width: 100%;
+  width: 100%;
 }
 
 .hero-alt-text-content p {
@@ -1064,15 +1069,20 @@ a:hover {
     width: 100%;
   }
 
-  /* Apple devices - larger font size */
+  /* Apple devices - larger font size and expanded width */
   .hero-alt-section.apple-device .hero-alt-heading {
     font-size: 3.75rem;
-    max-width: 90%;
-    width: 90%;
+    max-width: 97%;
+    width: 97%;
   }
 
   .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
-    padding-right: 1.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .hero-alt-section.apple-device .hero-alt-content-wrapper {
+    max-width: 100%;
+    width: 100%;
   }
   
   .hero-alt-text-content {
@@ -1082,10 +1092,10 @@ a:hover {
     max-width: 100%;
   }
 
-  /* Apple devices */
+  /* Apple devices - expanded width */
   .hero-alt-section.apple-device .hero-alt-text-content {
-    max-width: 90%;
-    width: 90%;
+    max-width: 97%;
+    width: 97%;
   }
 }
 
@@ -1108,15 +1118,21 @@ a:hover {
     width: 100%;
   }
 
-  /* Apple devices - larger font size */
+  /* Apple devices - larger font size and expanded width */
   .hero-alt-section.apple-device .hero-alt-heading {
     font-size: 4.5rem;
-    max-width: 85%;
-    width: 85%;
+    max-width: 96%;
+    width: 96%;
   }
 
   .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
-    padding-right: 1.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .hero-alt-section.apple-device .hero-alt-content-wrapper {
+    max-width: 100%;
+    width: 100%;
+    padding-right: 0;
   }
   
   .hero-alt-text-content {
@@ -1127,10 +1143,10 @@ a:hover {
     width: 75%;
   }
 
-  /* Apple devices */
+  /* Apple devices - expanded width */
   .hero-alt-section.apple-device .hero-alt-text-content {
-    max-width: 80%;
-    width: 80%;
+    max-width: 96%;
+    width: 96%;
   }
   
   .hero-alt-microcopy {
@@ -1166,10 +1182,20 @@ a:hover {
     padding-right: 0.5rem;
     margin-bottom: 1.5rem;
   }
+
+  /* Apple devices - minimal padding */
+  .hero-alt-section.apple-device .col-12.col-lg-6:first-child {
+    padding-right: 0.25rem;
+  }
   
   .hero-alt-content-wrapper {
     max-width: 100%;
     padding-right: 0;
+  }
+
+  .hero-alt-section.apple-device .hero-alt-content-wrapper {
+    max-width: 100%;
+    width: 100%;
   }
   
   .hero-alt-heading {
@@ -1181,11 +1207,17 @@ a:hover {
     letter-spacing: -0.01em;
   }
 
-  /* Apple devices - larger font size */
+  /* Apple devices - larger font size and expanded width */
   .hero-alt-section.apple-device .hero-alt-heading {
     font-size: 2.5rem;
-    max-width: 95%;
-    width: 95%;
+    max-width: 98%;
+    width: 98%;
+  }
+
+  /* Apple devices - expand text content width */
+  .hero-alt-section.apple-device .hero-alt-text-content {
+    max-width: 98%;
+    width: 98%;
   }
   
   .hero-alt-text-content {
