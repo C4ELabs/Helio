@@ -27,17 +27,8 @@ const Navbar = () => {
           <ul className="navbar-nav ms-auto align-items-center">
             <li className="nav-item">
               <Link 
-                className="btn btn-primary" 
+                className="btn join-waitlist-btn" 
                 to="/waitlist"
-                style={{ 
-                  backgroundColor: '#496fb6', 
-                  borderColor: '#496fb6', 
-                  color: '#ffffff',
-                  padding: '0.5rem 1.5rem',
-                  borderRadius: '0.375rem',
-                  textDecoration: 'none',
-                  fontWeight: '500'
-                }}
               >
                 Join Waitlist
               </Link>

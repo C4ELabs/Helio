@@ -54,8 +54,7 @@ const Hero = () => {
               </p>
               <Link
                 to="/waitlist"
-                className="btn btn-light hero-cta-btn"
-                style={{ backgroundColor: '#ffffff', color: '#496fb6', border: 'none', textDecoration: 'none', display: 'inline-block' }}
+                className="btn join-waitlist-btn"
               >
                 Join Waitlist
               </Link>

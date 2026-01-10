@@ -101,7 +101,7 @@ const HeroAlt = () => {
               <div className="hero-alt-cta-section">
                 <Link
                   to="/waitlist"
-                  className="btn btn-primary hero-alt-btn"
+                  className="btn join-waitlist-btn hero-alt-btn"
                 >
                   Join Waitlist
                 </Link>
