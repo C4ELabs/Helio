@@ -82,7 +82,7 @@ const Hero = () => {
                 style={{
                   width: '100%',
                   minHeight: '400px',
-                  backgroundColor: '#e8ecf5',
+                  backgroundColor: '#ffffff',
                   color: '#496fb6',
                   fontSize: '14px',
                   textAlign: 'center',

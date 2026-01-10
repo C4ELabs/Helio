@@ -342,7 +342,7 @@ html {
 
 /* Light background sections */
 .bg-helio-light {
-  background-color: var(--helio-light) !important;
+  background-color: #ffffff !important;
 }
 
 .bg-white {
@@ -847,7 +847,7 @@ a:hover {
 
 /* Hero Alt Section - Split hero: text left, image right */
 .hero-alt-section {
-  background-color: #f8f6f4;
+  background-color: #ffffff;
   min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
@@ -872,10 +872,10 @@ a:hover {
   height: 50px;
   background: linear-gradient(to bottom, 
     transparent 0%,
-    rgba(248, 246, 244, 0.4) 30%,
-    rgba(248, 246, 244, 0.7) 60%,
-    rgba(255, 255, 255, 0.6) 80%,
-    rgba(255, 255, 255, 0.9) 95%,
+    rgba(255, 255, 255, 0.4) 30%,
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0.9) 80%,
+    rgba(255, 255, 255, 0.95) 95%,
     #ffffff 100%
   );
   pointer-events: none;
@@ -916,7 +916,7 @@ a:hover {
 }
 
 .hero-alt-image-placeholder {
-  background-color: #f8f6f4;
+  background-color: #ffffff;
   opacity: 1;
 }
 
@@ -1658,7 +1658,7 @@ section[id] {
 }
 
 .feature-icon-pink {
-  background-color: rgba(232, 236, 245, 0.7);
+  background-color: #ffffff;
 }
 
 .feature-icon-purple {
@@ -1699,7 +1699,7 @@ section[id] {
 }
 
 .feature-badge-pink {
-  background-color: rgba(232, 236, 245, 0.8);
+  background-color: #ffffff;
 }
 
 .feature-badge-dark-pink {
@@ -1735,7 +1735,7 @@ section[id] {
 
 /* Waitlist page styling */
 .waitlist-section {
-  background: linear-gradient(135deg, var(--helio-light) 0%, #ffffff 100%);
+  background: #ffffff;
   min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
